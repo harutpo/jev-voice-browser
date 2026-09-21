@@ -7,7 +7,7 @@ import { DEBOUNCE_MS, SILENCE_COMPLETE_MS, CANDIDATE_TTL_MS, MAX_INFLIGHT, MODEL
 import { decide, isAbortError } from "./jev.js";
 import { evaluatePolicy, describe } from "./policy.js";
 import { execute } from "./executor.js";
-import { parseCandidatePick, cleanTranscript } from "./spans.js";
+import { parseCandidatePick, cleanTranscript, hasEnoughNewWords } from "./spans.js";
 import { approxTokens } from "./snapshot.js";
 
 const avg = (xs) => (xs.length ? Math.round(xs.reduce((a, b) => a + b, 0) / xs.length) : null);
@@ -80,7 +80,7 @@ export class Controller extends EventEmitter {
     if (consumed && consumed.id === utteranceId) {
       if (!clean.toLowerCase().startsWith(consumed.prefix)) return; // recognizer revised the executed words; ignore
       clean = clean.slice(consumed.prefix.length).trim();
-      if (clean.split(/\s+/).filter(Boolean).length < 2) return;
+      if (!hasEnoughNewWords(clean)) return;
       virtualId = `${utteranceId}+${consumed.gen}`;
     }
 

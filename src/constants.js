@@ -12,6 +12,9 @@
  *  - always include a `none` option; never ask Jev to count or generate
  */
 
+import { LANG } from "./lang.js";
+import { localizeJa } from "./constants.ja.js";
+
 export const MODEL = "jev-1.13.0"; // pinned: aliases move on release, thresholds below were tuned on this version
 
 export const PRICE_PER_M_INPUT_TOKENS_USD = 0.042; // output tokens are free
@@ -58,7 +61,7 @@ export const TARGET_INTENTS = new Set(["click_element", "type_into_field", "sele
 // ---------------------------------------------------------------------------
 // Sites (code owns URLs; Jev only picks the name)
 // ---------------------------------------------------------------------------
-export const SITE_HOME = {
+const SITE_HOME_EN = {
   google: "https://www.google.com/",
   duckduckgo: "https://duckduckgo.com/",
   youtube: "https://www.youtube.com/",
@@ -72,7 +75,7 @@ export const SITE_HOME = {
 };
 
 // Search URL templates; `%s` is replaced with the URL-encoded query.
-export const SITE_SEARCH = {
+const SITE_SEARCH_EN = {
   google: "https://www.google.com/search?q=%s",
   duckduckgo: "https://duckduckgo.com/?q=%s",
   the_web: "https://duckduckgo.com/?q=%s",
@@ -91,7 +94,7 @@ export const DEFAULT_SEARCH_ENGINE = "duckduckgo";
 // Questions. All are asked in ONE request per transcript update (speculative fan-out).
 // ---------------------------------------------------------------------------
 
-export const INTENT_CRITERIA = {
+const INTENT_CRITERIA_EN = {
   navigate_url: {
     what: "Open a specific website or URL by name (go to / open / visit / take me to <site>)",
     not_for: "Searching for a topic; clicking something already on the page",
@@ -179,7 +182,7 @@ export const INTENT_CRITERIA = {
   },
 };
 
-export const SITE_CRITERIA = {
+const SITE_CRITERIA_EN = {
   google: "Google (google, google it)",
   duckduckgo: "DuckDuckGo",
   the_web: "A general web search with no site named (search the web, look it up online)",
@@ -195,14 +198,14 @@ export const SITE_CRITERIA = {
   none: "No website or search engine is mentioned in `transcript`",
 };
 
-export const QUESTIONS = {
+const QUESTIONS_EN = {
   intent: {
     instructions: {
       question: "Which browser action does the user ask for in `transcript`?",
       focus:
         "Judge the words said so far. If the sentence is unfinished, pick the action the words already commit to; if no action is recognizable pick none. `page` and `elements` describe what is currently on screen.",
     },
-    criteria: INTENT_CRITERIA,
+    criteria: INTENT_CRITERIA_EN,
   },
 
   target: {
@@ -220,7 +223,7 @@ export const QUESTIONS = {
       question: "Which website or search engine does the user name in `transcript`?",
       focus: "Only what is explicitly said. Pick none if no site is named.",
     },
-    criteria: SITE_CRITERIA,
+    criteria: SITE_CRITERIA_EN,
   },
 
   complete: {
@@ -315,3 +318,18 @@ export const QUESTIONS = {
     },
   },
 };
+
+// ---------------------------------------------------------------------------
+// Language selection (`--lang ja`, see lang.js). The English definitions above are the base;
+// constants.ja.js derives the Japanese set from them. Export names are the same either way.
+// ---------------------------------------------------------------------------
+const EN = {
+  INTENT_CRITERIA: INTENT_CRITERIA_EN,
+  SITE_CRITERIA: SITE_CRITERIA_EN,
+  QUESTIONS: QUESTIONS_EN,
+  SITE_HOME: SITE_HOME_EN,
+  SITE_SEARCH: SITE_SEARCH_EN,
+};
+const ACTIVE = LANG === "ja" ? localizeJa(EN) : EN;
+
+export const { INTENT_CRITERIA, SITE_CRITERIA, QUESTIONS, SITE_HOME, SITE_SEARCH } = ACTIVE;
