@@ -13,6 +13,7 @@ import {
   PAYLOAD_INTENTS,
 } from "./constants.js";
 import { toHttpUrl } from "./spans.js";
+import { t } from "./messages.js";
 
 const r2 = (x) => Math.round(x * 100) / 100;
 
@@ -124,7 +125,7 @@ export function evaluatePolicy({ answers, candidates, snapshot, silentMs = 0, is
     const safe = destructive < T.destructive;
     check(reasons, "destructive", destructive, T.destructive, safe, safe ? "reversible action" : "needs spoken confirmation");
     if (!safe) {
-      return { decision: "confirm", action, reasons, summary: `say "confirm" to ${describe(action)}` };
+      return { decision: "confirm", action, reasons, summary: t("summary.sayConfirm", { action: describe(action) }) };
     }
   }
 
@@ -236,13 +237,13 @@ export function describe(action) {
   if (!action) return "";
   switch (action.type) {
     case "navigate_url":
-      return `open ${action.label || action.url}`;
+      return t("describe.open", { what: action.label || action.url });
     case "type_into_field":
-      return `type "${action.text}" into ${action.label || action.targetId}${action.submit ? " + enter" : ""}`;
+      return t("describe.type", { text: action.text, where: action.label || action.targetId }) + (action.submit ? t("describe.typeEnter") : "");
     case "click_element":
-      return `click ${action.label || action.targetId}`;
+      return t("describe.click", { what: action.label || action.targetId });
     case "select_option":
-      return `select "${action.text}" in ${action.label || action.targetId}`;
+      return t("describe.select", { text: action.text, where: action.label || action.targetId });
     default:
       return action.label || action.type.replace(/_/g, " ");
   }

@@ -18,6 +18,7 @@ import { BrowserManager } from "../src/browser.js";
 import { Controller } from "../src/controller.js";
 import { hasApiKey } from "../src/jev.js";
 import { MODEL } from "../src/constants.js";
+import { LANG } from "../src/lang.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -52,8 +53,32 @@ async function waitFor(fn, { timeout = 10000, every = 150 } = {}) {
 const url = (b) => b.page?.url() || "";
 const scrollY = (b) => b.page.evaluate(() => Math.round(window.scrollY)).catch(() => 0);
 
+/**
+ * Split a phrase into the chunks that arrive as partial transcripts. English: words. Japanese
+ * has no spaces, so use Intl.Segmenter word boundaries ("猫を検索して" -> 猫 / を / 検索 / し / て).
+ */
+function chunks(say) {
+  if (LANG !== "ja") return { words: say.split(" "), sep: " " };
+  const seg = new Intl.Segmenter("ja", { granularity: "word" });
+  return { words: [...seg.segment(say)].map((s) => s.segment), sep: "" };
+}
+
+/** Japanese demo (`--lang ja`). Same shape as the English steps below. */
+const STEPS_JA = [
+  { say: "ウィキペディアを開いて", expect: (b) => url(b).includes("ja.wikipedia.org") },
+  { say: "アラン・チューリングを検索して", expect: (b) => /アラン|%E3%82%A2%E3%83%A9%E3%83%B3|search=/i.test(url(b)) },
+  { say: "少し下にスクロール", expect: async (b) => (await scrollY(b)) > 50 },
+  { say: "一番下までスクロールして", expect: async (b) => (await scrollY(b)) > 2000 },
+  { say: "前のページに戻って", expect: (b) => url(b).includes("wikipedia.org") },
+  { say: "example ドット コム を開いて", expect: (b) => url(b).includes("example.com") },
+  { say: "新しいタブを開いて", expect: (b) => b.pages.length === 2 },
+  { say: "このタブを閉じて", expect: (b) => b.pages.length === 1 },
+  { say: "ダックダックゴーで富士山を検索して", expect: (b) => /duckduckgo\.com\/\?q=/.test(url(b)) && decodeURIComponent(url(b)).includes("富士山") },
+  { say: "それでね今日のお昼どうしようかな", expectNoAction: true, expect: () => true },
+];
+
 /** The scripted demo. `expect` returns truthy when the step succeeded. */
-const STEPS = [
+const STEPS_EN = [
   { say: "go to wikipedia", expect: (b) => url(b).includes("wikipedia.org") },
   { say: "search for alan turing", expect: (b) => /Alan_Turing|search=alan/i.test(url(b)) },
   { say: "scroll down a bit", expect: async (b) => (await scrollY(b)) > 50 },
@@ -79,6 +104,8 @@ const STEPS = [
   { say: "go to example dot com and click the more information link", expect: (b) => url(b).includes("iana.org"), multi: true },
   { say: "so anyway I think we should get lunch", expectNoAction: true, expect: () => true },
 ];
+
+const STEPS = LANG === "ja" ? STEPS_JA : STEPS_EN;
 
 async function main() {
   const profileDir = HEADLESS ? fs.mkdtempSync(path.join(os.tmpdir(), "vb-demo-")) : path.join(__dirname, "..", ".browser-profile-demo");
@@ -132,7 +159,7 @@ async function main() {
  * (or shows candidates / asks for confirmation), then check the expectation.
  */
 async function runStep(step, no, controller, browser) {
-  const words = step.say.split(" ");
+  const { words, sep } = chunks(step.say);
   const utteranceId = `demo-${no}`;
   let actedAt = null;
   let latency = null;
@@ -160,7 +187,7 @@ async function runStep(step, no, controller, browser) {
 
   process.stdout.write(`${no}. "${step.say}" `);
   for (let i = 0; i < words.length; i++) {
-    const partial = words.slice(0, i + 1).join(" ");
+    const partial = words.slice(0, i + 1).join(sep);
     if (done && !step.multi) break;
     controller.handleTranscript({ text: partial, final: false, utteranceId });
     process.stdout.write(".");

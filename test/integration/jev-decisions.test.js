@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import { decide, hasApiKey } from "../../src/jev.js";
 import { evaluatePolicy } from "../../src/policy.js";
 import { MODEL } from "../../src/constants.js";
+import { LANG } from "../../src/lang.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixture = (name) => JSON.parse(fs.readFileSync(path.join(__dirname, "..", "fixtures", `${name}.json`), "utf8"));
@@ -101,13 +102,14 @@ const CASES = [
 ];
 
 const results = [];
+const skip = !hasApiKey() || LANG !== "en"; // English cases; Japanese ones live in jev-decisions.ja.test.js
 
 before(() => {
   if (!hasApiKey()) console.log("SKIP: no TYPESAFE_API_KEY / JEV_API_KEY set");
 });
 
 for (const c of CASES) {
-  test(`jev: ${c.name} — "${c.transcript}"`, { skip: !hasApiKey() }, async () => {
+  test(`jev: ${c.name} — "${c.transcript}"`, { skip }, async () => {
     const snapshot = typeof c.snapshot === "string" ? fixture(c.snapshot) : c.snapshot;
     const r = await decide({ transcript: c.transcript, snapshot });
     const policy = evaluatePolicy({ answers: r.answers, candidates: r.candidates, snapshot, isFinal: c.final !== false });
@@ -129,7 +131,7 @@ for (const c of CASES) {
   });
 }
 
-test("integration pass-rate report", { skip: !hasApiKey() }, () => {
+test("integration pass-rate report", { skip }, () => {
   const passed = results.filter((r) => r.ok).length;
   const lat = results.map((r) => r.latency).sort((a, b) => a - b);
   const p50 = lat[Math.floor(lat.length / 2)];

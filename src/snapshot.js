@@ -139,12 +139,13 @@ export function detectSite(url) {
   } catch {
     return "generic";
   }
-  if (host.endsWith("google.com") || host.endsWith("google.co.uk")) return "google";
+  if (host.endsWith("google.com") || host.endsWith("google.co.uk") || host.endsWith("google.co.jp")) return "google";
   if (host.endsWith("duckduckgo.com")) return "duckduckgo";
   if (host.endsWith("youtube.com")) return "youtube";
   if (host.endsWith("wikipedia.org")) return "wikipedia";
   if (host.endsWith("github.com")) return "github";
-  if (host.endsWith("amazon.com") || host.endsWith("amazon.de") || host.endsWith("amazon.co.uk")) return "amazon";
+  if (host.endsWith("amazon.com") || host.endsWith("amazon.de") || host.endsWith("amazon.co.uk") || host.endsWith("amazon.co.jp")) return "amazon";
+  if (host.endsWith("yahoo.co.jp")) return "yahoo_japan";
   if (host.endsWith("reddit.com")) return "reddit";
   if (host === "x.com" || host.endsWith("twitter.com")) return "twitter_x";
   if (host.endsWith("news.ycombinator.com")) return "hacker_news";
@@ -153,6 +154,8 @@ export function detectSite(url) {
   return "generic";
 }
 
+// Visible label of a search box, in any supported language (Japanese sites say 検索 / キーワード).
+const SEARCH_LABEL = /search|検索|キーワード|さがす|探す/i;
 const SEARCHY = /(^|[^a-z])(q|query|search|s|keyword|k|search_query)($|[^a-z])/i;
 
 /** Heuristic: which element id is the page's main search box? */
@@ -162,7 +165,7 @@ export function findSearchBox(elements) {
     let s = 0;
     if (e.role === "searchbox" || e.type === "search") s += 5;
     if (SEARCHY.test(e.inputName || "")) s += 3;
-    if (/search/i.test(e.placeholder || "") || /search/i.test(e.text || "")) s += 3;
+    if (SEARCH_LABEL.test(e.placeholder || "") || SEARCH_LABEL.test(e.text || "")) s += 3;
     if (e.inViewport) s += 1;
     return { e, s };
   });

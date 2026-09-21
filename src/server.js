@@ -12,6 +12,7 @@ import { BrowserManager } from "./browser.js";
 import { Controller } from "./controller.js";
 import { hasApiKey } from "./jev.js";
 import { MODEL, QUESTIONS, T } from "./constants.js";
+import { LANG } from "./lang.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -32,6 +33,7 @@ export function parseArgs(argv) {
     else if (a === "--headless") out.headless = true;
     else if (a === "--cdp") out.cdp = argv[++i];
     else if (a === "--start-url") out.startUrl = argv[++i];
+    else if (a === "--lang") i++; // value is resolved once at module load by lang.js
   }
   return out;
 }
@@ -106,7 +108,7 @@ export async function startServer(opts = {}) {
     console.warn(`WARNING: listening on ${host} — anyone who can reach this port can control the browser and spend API credits.`);
   }
   console.log(`\nvoice-browser ready → open ${url} in Chrome (mic needs Chrome/Edge)`);
-  console.log(`model ${MODEL} · controlled window: ${opts.cdp ? "attached via CDP" : opts.headless ? "headless" : "headed Chromium"}\n`);
+  console.log(`model ${MODEL} · language ${LANG} · controlled window: ${opts.cdp ? "attached via CDP" : opts.headless ? "headless" : "headed Chromium"}\n`);
 
   const shutdown = async () => {
     await controller.close();

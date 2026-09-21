@@ -4,6 +4,7 @@
  */
 import { HIGHLIGHT_MS } from "./constants.js";
 import { describe } from "./policy.js";
+import { t } from "./messages.js";
 
 const NAV_TIMEOUT = 15000;
 
@@ -99,7 +100,7 @@ export async function execute(action, browser) {
     }
 
     case "press_enter":
-      await browser.overlay("toast", "⏎ enter");
+      await browser.overlay("toast", t("toast.enter"));
       await page.keyboard.press("Enter");
       await settle(page);
       return { ok: true, detail: page.url() };
@@ -125,26 +126,26 @@ export async function execute(action, browser) {
     }
 
     case "go_back":
-      await browser.overlay("toast", "← back");
+      await browser.overlay("toast", t("toast.back"));
       await page.goBack({ waitUntil: "domcontentloaded", timeout: NAV_TIMEOUT }).catch(() => {});
       await settle(page, 800);
       return { ok: true, detail: page.url() };
 
     case "go_forward":
-      await browser.overlay("toast", "→ forward");
+      await browser.overlay("toast", t("toast.forward"));
       await page.goForward({ waitUntil: "domcontentloaded", timeout: NAV_TIMEOUT }).catch(() => {});
       await settle(page, 800);
       return { ok: true, detail: page.url() };
 
     case "reload":
-      await browser.overlay("toast", "↻ reload");
+      await browser.overlay("toast", t("toast.reload"));
       await page.reload({ waitUntil: "domcontentloaded", timeout: NAV_TIMEOUT }).catch(() => {});
       return { ok: true, detail: page.url() };
 
     case "open_new_tab": {
       const p = await browser.context.newPage();
       await browser.setActive(p);
-      await browser.overlay("toast", "new tab");
+      await browser.overlay("toast", t("toast.newTab"));
       return { ok: true, detail: `tabs=${browser.pages.length}` };
     }
 
@@ -164,7 +165,7 @@ export async function execute(action, browser) {
       else if (action.direction === "first") next = pages[0];
       else next = pages[(i + 1) % pages.length];
       await browser.setActive(next);
-      await browser.overlay("toast", "switched tab");
+      await browser.overlay("toast", t("toast.switchedTab"));
       return { ok: true, detail: next.url() };
     }
 

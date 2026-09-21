@@ -165,6 +165,38 @@
   let hotIds = new Set();
   let candIds = new Set();
 
+  // ------------------------------------------------------------ language (server: --lang, sent in "hello")
+  const STRINGS = {
+    en: {
+      hint: "Say something like “go to wikipedia”…",
+      startMic: "Start mic", stopMic: "Stop mic", undo: "Undo / back", resnap: "Re-scan page", run: "Run",
+      cmdPlaceholder: "…or type a command and press Enter (no-mic fallback)",
+      pending: (s) => `⚠ pending: ${s} — say "confirm" or "cancel"`,
+      noSpeech: "Web Speech API not available. Use Chrome or Edge, or type commands below.",
+    },
+    ja: {
+      hint: "「ウィキペディアを開いて」のように話しかけてください…",
+      startMic: "マイク開始", stopMic: "マイク停止", undo: "元に戻す", resnap: "ページを再スキャン", run: "実行",
+      cmdPlaceholder: "…またはコマンドを入力して Enter（マイクなしで試す）",
+      pending: (s) => `⚠ 確認待ち: ${s} —「確定」または「キャンセル」と言ってください`,
+      noSpeech: "Web Speech API が使えません。Chrome か Edge を使うか、下の欄にコマンドを入力してください。",
+    },
+  };
+  let L = STRINGS.en;
+  let speechLang = "en-US";
+  function applyLang() {
+    L = STRINGS[ui.lang] || STRINGS.en;
+    speechLang = ui.speechLang || "en-US";
+    document.documentElement.lang = ui.lang || "en";
+    const hint = document.querySelector("#transcript .interim");
+    if (hint && !micOn) hint.textContent = L.hint;
+    $("micbtn").textContent = micOn ? L.stopMic : L.startMic;
+    $("undo").textContent = L.undo;
+    $("resnap").textContent = L.resnap;
+    $("cmdform").querySelector("button").textContent = L.run;
+    $("cmd").placeholder = L.cmdPlaceholder;
+  }
+
   // ------------------------------------------------------------ websocket
   function connect() {
     ws = new WebSocket(`ws://${location.host}`);
@@ -173,14 +205,14 @@
     ws.onmessage = (ev) => {
       const { type, payload } = JSON.parse(ev.data);
       switch (type) {
-        case "hello": ui = payload; renderAll(); break;
+        case "hello": ui = payload; applyLang(); renderAll(); break;
         case "transcript": renderTranscript(payload); break;
         case "decision": renderDecision(payload); break;
         case "action": ui = payload.ui; renderStats(); renderSnapshot(); break;
         case "snapshot": ui && (ui.snapshot = payload); renderSnapshot(); break;
         case "log": appendLog(payload); break;
         case "candidates": candIds = new Set((payload || []).map((c) => c.id)); renderSnapshot(); break;
-        case "pending": $("pending").textContent = payload ? `⚠ pending: ${payload.summary} — say "confirm" or "cancel"` : ""; break;
+        case "pending": $("pending").textContent = payload ? L.pending(payload.summary) : ""; break;
         case "tabs": $("tabs").textContent = `${payload.length} tab${payload.length === 1 ? "" : "s"}`; break;
       }
     };
@@ -194,7 +226,7 @@
     $("log").innerHTML = "";
     (ui.log || []).forEach(appendLog);
     if (ui.lastDecision) renderDecision(ui.lastDecision);
-    if (ui.pending) $("pending").textContent = `⚠ pending: ${ui.pending.summary} — say "confirm" or "cancel"`;
+    if (ui.pending) $("pending").textContent = L.pending(ui.pending.summary);
   }
   function renderStats() {
     const s = ui.stats;
@@ -292,9 +324,9 @@
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   let rec = null, micOn = false, utteranceBase = 0;
   function startMic() {
-    if (!SR) { alert("Web Speech API not available. Use Chrome or Edge, or type commands below."); return; }
+    if (!SR) { alert(L.noSpeech); return; }
     rec = new SR();
-    rec.continuous = true; rec.interimResults = true; rec.lang = "en-US"; rec.maxAlternatives = 1;
+    rec.continuous = true; rec.interimResults = true; rec.lang = speechLang; rec.maxAlternatives = 1;
     rec.onresult = (ev) => {
       // Results before ev.resultIndex are finished. Each result index is a distinct utterance.
       for (let i = ev.resultIndex; i < ev.results.length; i++) {
@@ -306,11 +338,11 @@
     rec.onerror = (e) => { $("micstate").textContent = "error: " + e.error; if (e.error === "not-allowed") stopMic(); };
     rec.onend = () => { if (micOn) { utteranceBase += 1; try { rec.start(); } catch {} } };
     rec.start();
-    micOn = true; $("micdot").classList.add("on"); $("micstate").textContent = "listening"; $("micbtn").textContent = "Stop mic"; $("micbtn").classList.remove("primary");
+    micOn = true; $("micdot").classList.add("on"); $("micstate").textContent = "listening"; $("micbtn").textContent = L.stopMic; $("micbtn").classList.remove("primary");
   }
   function stopMic() {
     micOn = false; try { rec && rec.stop(); } catch {}
-    $("micdot").classList.remove("on"); $("micstate").textContent = "off"; $("micbtn").textContent = "Start mic"; $("micbtn").classList.add("primary");
+    $("micdot").classList.remove("on"); $("micstate").textContent = "off"; $("micbtn").textContent = L.startMic; $("micbtn").classList.add("primary");
   }
   $("micbtn").onclick = () => (micOn ? stopMic() : startMic());
 

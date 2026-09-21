@@ -9,6 +9,8 @@ import { evaluatePolicy, describe } from "./policy.js";
 import { execute } from "./executor.js";
 import { parseCandidatePick, cleanTranscript, hasEnoughNewWords } from "./spans.js";
 import { approxTokens } from "./snapshot.js";
+import { t } from "./messages.js";
+import { LANG, SPEECH_LANG } from "./lang.js";
 
 const avg = (xs) => (xs.length ? Math.round(xs.reduce((a, b) => a + b, 0) / xs.length) : null);
 
@@ -240,20 +242,20 @@ export class Controller extends EventEmitter {
       case "confirm":
         this._consume(utt, textAtRequest);
         this.pending = policy.action;
-        await this.browser.overlay("toast", `Say "confirm" to ${describe(policy.action)}`, 6000);
+        await this.browser.overlay("toast", t("toast.sayConfirm", { action: describe(policy.action) }), 6000);
         this.emit("pending", { action: policy.action, summary: policy.summary });
         break;
       case "cancel":
         this._consume(utt, textAtRequest);
         this.pending = null;
-        await this.browser.overlay("toast", "cancelled");
+        await this.browser.overlay("toast", t("toast.cancelled"));
         this.emit("pending", null);
         break;
       case "disambiguate": {
         const list = policy.candidates.map((c, i) => ({ n: i + 1, id: c.id, label: c.label, p: c.p }));
         this.candidates = { list, intent: policy.pendingIntent, at: Date.now() };
         await this.browser.overlay("candidates", list, CANDIDATE_TTL_MS);
-        await this.browser.overlay("toast", "Which one? Say the number.", 3000);
+        await this.browser.overlay("toast", t("toast.whichOne"), 3000);
         this.emit("candidates", list);
         this._scheduleSilenceRetry(utt);
         break;
@@ -321,6 +323,8 @@ export class Controller extends EventEmitter {
     const p50 = sorted.length ? sorted[Math.floor(sorted.length / 2)] : null;
     return {
       model: this.stats.model,
+      lang: LANG,
+      speechLang: SPEECH_LANG, // BCP-47 tag for the control page's SpeechRecognition
       thresholds: T,
       stats: {
         calls: this.stats.calls,

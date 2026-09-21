@@ -1,0 +1,624 @@
+{
+  "url": "https://ja.wikipedia.org/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8",
+  "title": "Wikipedia",
+  "site": "wikipedia",
+  "scrollY": 0,
+  "scrollHeight": 3552,
+  "viewportHeight": 900,
+  "searchBoxId": "e02",
+  "elements": [
+    {
+      "id": "e02",
+      "role": "searchbox",
+      "text": "Wikipedia内を検索"
+    },
+    {
+      "id": "e03",
+      "role": "button",
+      "text": "検索"
+    },
+    {
+      "id": "e04",
+      "role": "link",
+      "text": "寄付",
+      "href": "donate.wikimedia.org"
+    },
+    {
+      "id": "e05",
+      "role": "link",
+      "text": "アカウント作成",
+      "href": "ja.wikipedia.org/w/index.php"
+    },
+    {
+      "id": "e06",
+      "role": "link",
+      "text": "ログイン",
+      "href": "ja.wikipedia.org/w/index.php"
+    },
+    {
+      "id": "e07",
+      "role": "link",
+      "text": "メインページ",
+      "href": "ja.wikipedia.org/wiki/%E3%83%A1%E3%82%A4%E3%83%B3…"
+    },
+    {
+      "id": "e08",
+      "role": "link",
+      "text": "ノート",
+      "href": "ja.wikipedia.org/wiki/%E3%83%8E%E3%83%BC%E3%83%88…"
+    },
+    {
+      "id": "e09",
+      "role": "link",
+      "text": "閲覧",
+      "href": "ja.wikipedia.org/wiki/%E3%83%A1%E3%82%A4%E3%83%B3…"
+    },
+    {
+      "id": "e10",
+      "role": "link",
+      "text": "ソースを閲覧",
+      "href": "ja.wikipedia.org/w/index.php"
+    },
+    {
+      "id": "e11",
+      "role": "link",
+      "text": "履歴を表示",
+      "href": "ja.wikipedia.org/w/index.php"
+    },
+    {
+      "id": "e12",
+      "role": "button",
+      "text": "表示を非表示"
+    },
+    {
+      "id": "e13",
+      "role": "link",
+      "text": "ウィキペディア",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E3%82%A6%E3%82%A…"
+    },
+    {
+      "id": "e14",
+      "role": "link",
+      "text": "誰でも編集できる",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E3%82%A6%E3%82%A…"
+    },
+    {
+      "id": "e15",
+      "role": "link",
+      "text": "フリー",
+      "href": "ja.wikipedia.org/wiki/%E3%82%AA%E3%83%BC%E3%83%97…"
+    },
+    {
+      "id": "e16",
+      "role": "link",
+      "text": "百科事典",
+      "href": "ja.wikipedia.org/wiki/%E7%99%BE%E7%A7%91%E4%BA%8B…"
+    },
+    {
+      "id": "e17",
+      "role": "link",
+      "text": "1,519,316",
+      "href": "ja.wikipedia.org/wiki/%E7%89%B9%E5%88%A5:%E7%B5%B…"
+    },
+    {
+      "id": "e18",
+      "role": "link",
+      "text": "記事",
+      "href": "ja.wikipedia.org/wiki/Help:%E8%A8%98%E4%BA%8B%E3%…"
+    },
+    {
+      "id": "e19",
+      "role": "link",
+      "text": "Help for Non-Japanese Speakers",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:Help_for_Non-Japa…"
+    },
+    {
+      "id": "e20",
+      "role": "link",
+      "text": "Wikipedia:秀逸な記事",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E7%A7%80%E9%80%B…"
+    },
+    {
+      "id": "e161",
+      "role": "link",
+      "text": "Wikipedia:秀逸な画像",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E7%A7%80%E9%80%B…"
+    },
+    {
+      "id": "e162",
+      "role": "link",
+      "text": "今日の一枚",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E4%BB%8A%E6%97%A…"
+    },
+    {
+      "id": "e22",
+      "role": "link",
+      "text": "横須賀海軍施設ドック",
+      "href": "ja.wikipedia.org/wiki/%E6%A8%AA%E9%A0%88%E8%B3%80…"
+    },
+    {
+      "id": "e23",
+      "role": "link",
+      "text": "神奈川県",
+      "href": "ja.wikipedia.org/wiki/%E7%A5%9E%E5%A5%88%E5%B7%9D…"
+    },
+    {
+      "id": "e24",
+      "role": "link",
+      "text": "横須賀市",
+      "href": "ja.wikipedia.org/wiki/%E6%A8%AA%E9%A0%88%E8%B3%80…"
+    },
+    {
+      "id": "e25",
+      "role": "link",
+      "text": "アメリカ海軍",
+      "href": "ja.wikipedia.org/wiki/%E3%82%A2%E3%83%A1%E3%83%AA…"
+    },
+    {
+      "id": "e26",
+      "role": "link",
+      "text": "横須賀海軍施設",
+      "href": "ja.wikipedia.org/wiki/%E6%A8%AA%E9%A0%88%E8%B3%80…"
+    },
+    {
+      "id": "e21",
+      "role": "link",
+      "text": "1874年の完成当時の原型をほぼとどめている現役ドライドックである、横須賀海軍施設3号ドック。",
+      "href": "ja.wikipedia.org/wiki/%E3%83%95%E3%82%A1%E3%82%A4…"
+    },
+    {
+      "id": "e28",
+      "role": "link",
+      "text": "ドライドック",
+      "href": "ja.wikipedia.org/wiki/%E3%83%89%E3%83%A9%E3%82%A4…"
+    },
+    {
+      "id": "e27",
+      "role": "link",
+      "text": "海上自衛隊",
+      "href": "ja.wikipedia.org/wiki/%E6%B5%B7%E4%B8%8A%E8%87%AA…"
+    },
+    {
+      "id": "e29",
+      "role": "link",
+      "text": "横須賀造船所",
+      "href": "ja.wikipedia.org/wiki/%E6%A8%AA%E9%A0%88%E8%B3%80…"
+    },
+    {
+      "id": "e163",
+      "role": "link",
+      "text": "オシドリ (Aix galericulata) のオス（右）とメス（左）、イングランドの野鳥保護区マーティン・ミアにて",
+      "href": "ja.wikipedia.org/wiki/%E3%83%95%E3%82%A1%E3%82%A4…"
+    },
+    {
+      "id": "e30",
+      "role": "link",
+      "text": "明治",
+      "href": "ja.wikipedia.org/wiki/%E6%98%8E%E6%B2%BB"
+    },
+    {
+      "id": "e31",
+      "role": "link",
+      "text": "1871年",
+      "href": "ja.wikipedia.org/wiki/1871%E5%B9%B4"
+    },
+    {
+      "id": "e32",
+      "role": "link",
+      "text": "大和型戦艦",
+      "href": "ja.wikipedia.org/wiki/%E5%A4%A7%E5%92%8C%E5%9E%8B…"
+    },
+    {
+      "id": "e33",
+      "role": "link",
+      "text": "昭和",
+      "href": "ja.wikipedia.org/wiki/%E6%98%AD%E5%92%8C"
+    },
+    {
+      "id": "e34",
+      "role": "link",
+      "text": "1940年",
+      "href": "ja.wikipedia.org/wiki/1940%E5%B9%B4"
+    },
+    {
+      "id": "e35",
+      "role": "link",
+      "text": "空母",
+      "href": "ja.wikipedia.org/wiki/%E7%A9%BA%E6%AF%8D"
+    },
+    {
+      "id": "e164",
+      "role": "link",
+      "text": "オシドリ",
+      "href": "ja.wikipedia.org/wiki/%E3%82%AA%E3%82%B7%E3%83%89…"
+    },
+    {
+      "id": "e36",
+      "role": "link",
+      "text": "秀逸な記事",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E7%A7%80%E9%80%B…"
+    },
+    {
+      "id": "e37",
+      "role": "link",
+      "text": "おまかせ表示",
+      "href": "ja.wikipedia.org/wiki/%E7%89%B9%E5%88%A5:%E3%82%A…"
+    },
+    {
+      "id": "e38",
+      "role": "link",
+      "text": "つまみ読み",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E7%A7%80%E9%80%B…"
+    },
+    {
+      "id": "e39",
+      "role": "link",
+      "text": "選考",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E7%A7%80%E9%80%B…"
+    },
+    {
+      "id": "e40",
+      "role": "link",
+      "text": "御冠船料理",
+      "href": "ja.wikipedia.org/wiki/%E5%BE%A1%E5%86%A0%E8%88%B9…"
+    },
+    {
+      "id": "e41",
+      "role": "link",
+      "text": "中国の皇帝",
+      "href": "ja.wikipedia.org/wiki/%E7%9A%87%E5%B8%9D_(%E4%B8%…"
+    },
+    {
+      "id": "e42",
+      "role": "link",
+      "text": "琉球国王",
+      "href": "ja.wikipedia.org/wiki/%E7%90%89%E7%90%83%E5%9B%BD…"
+    },
+    {
+      "id": "e43",
+      "role": "link",
+      "text": "冊封",
+      "href": "ja.wikipedia.org/wiki/%E5%86%8A%E5%B0%81"
+    },
+    {
+      "id": "e165",
+      "role": "link",
+      "text": "マーティン・ミア",
+      "href": "ja.wikipedia.org/wiki/%E3%83%9E%E3%83%BC%E3%83%86…"
+    },
+    {
+      "id": "e44",
+      "role": "link",
+      "text": "冊封使",
+      "href": "ja.wikipedia.org/wiki/%E5%86%8A%E5%B0%81%E4%BD%BF"
+    },
+    {
+      "id": "e166",
+      "role": "link",
+      "text": "秀逸な画像",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E7%A7%80%E9%80%B…"
+    },
+    {
+      "id": "e167",
+      "role": "link",
+      "text": "投票・推薦",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E7%A7%80%E9%80%B…"
+    },
+    {
+      "id": "e46",
+      "role": "link",
+      "text": "沖縄料理",
+      "href": "ja.wikipedia.org/wiki/%E6%B2%96%E7%B8%84%E6%96%99…"
+    },
+    {
+      "id": "e45",
+      "role": "link",
+      "text": "福建料理",
+      "href": "ja.wikipedia.org/wiki/%E7%A6%8F%E5%BB%BA%E6%96%99…"
+    },
+    {
+      "id": "e168",
+      "role": "link",
+      "text": "Wikipedia:今日は何の日 9月",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E4%BB%8A%E6%97%A…"
+    },
+    {
+      "id": "e169",
+      "role": "link",
+      "text": "今日は何の日",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E4%BB%8A%E6%97%A…"
+    },
+    {
+      "id": "e170",
+      "role": "link",
+      "text": "9月22日",
+      "href": "ja.wikipedia.org/wiki/9%E6%9C%8822%E6%97%A5"
+    },
+    {
+      "id": "e47",
+      "role": "link",
+      "text": "日本料理",
+      "href": "ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E6%96%99…"
+    },
+    {
+      "id": "e48",
+      "role": "link",
+      "text": "馬 超",
+      "href": "ja.wikipedia.org/wiki/%E9%A6%AC%E8%B6%85"
+    },
+    {
+      "id": "e49",
+      "role": "link",
+      "text": "中国",
+      "href": "ja.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD"
+    },
+    {
+      "id": "e50",
+      "role": "link",
+      "text": "後漢末期",
+      "href": "ja.wikipedia.org/wiki/%E5%BE%8C%E6%BC%A2%E6%9C%AB"
+    },
+    {
+      "id": "e51",
+      "role": "link",
+      "text": "三国時代",
+      "href": "ja.wikipedia.org/wiki/%E4%B8%89%E5%9B%BD%E6%99%82…"
+    },
+    {
+      "id": "e52",
+      "role": "link",
+      "text": "将軍",
+      "href": "ja.wikipedia.org/wiki/%E5%B0%86%E8%BB%8D"
+    },
+    {
+      "id": "e53",
+      "role": "link",
+      "text": "関中",
+      "href": "ja.wikipedia.org/wiki/%E9%96%A2%E4%B8%AD"
+    },
+    {
+      "id": "e171",
+      "role": "link",
+      "text": "大コロンビア",
+      "href": "ja.wikipedia.org/wiki/%E5%A4%A7%E3%82%B3%E3%83%AD…"
+    },
+    {
+      "id": "e173",
+      "role": "link",
+      "text": "1830年",
+      "href": "ja.wikipedia.org/wiki/1830%E5%B9%B4"
+    },
+    {
+      "id": "e172",
+      "role": "link",
+      "text": "ベネズエラ",
+      "href": "ja.wikipedia.org/wiki/%E3%83%99%E3%83%8D%E3%82%BA…"
+    },
+    {
+      "id": "e54",
+      "role": "link",
+      "text": "曹操",
+      "href": "ja.wikipedia.org/wiki/%E6%9B%B9%E6%93%8D"
+    },
+    {
+      "id": "e55",
+      "role": "link",
+      "text": "韓遂",
+      "href": "ja.wikipedia.org/wiki/%E9%9F%93%E9%81%82"
+    },
+    {
+      "id": "e56",
+      "role": "link",
+      "text": "羌",
+      "href": "ja.wikipedia.org/wiki/%E7%BE%8C"
+    },
+    {
+      "id": "e57",
+      "role": "link",
+      "text": "胡",
+      "href": "ja.wikipedia.org/wiki/%E8%83%A1"
+    },
+    {
+      "id": "e58",
+      "role": "link",
+      "text": "涼州",
+      "href": "ja.wikipedia.org/wiki/%E6%B6%BC%E5%B7%9E"
+    },
+    {
+      "id": "e174",
+      "role": "link",
+      "text": "エイブラハム・リンカーン",
+      "href": "ja.wikipedia.org/wiki/%E3%82%A8%E3%82%A4%E3%83%96…"
+    },
+    {
+      "id": "e59",
+      "role": "link",
+      "text": "士大夫",
+      "href": "ja.wikipedia.org/wiki/%E5%A3%AB%E5%A4%A7%E5%A4%AB"
+    },
+    {
+      "id": "e175",
+      "role": "link",
+      "text": "奴隷解放宣言",
+      "href": "ja.wikipedia.org/wiki/%E5%A5%B4%E9%9A%B7%E8%A7%A3…"
+    },
+    {
+      "id": "e176",
+      "role": "link",
+      "text": "1862年",
+      "href": "ja.wikipedia.org/wiki/1862%E5%B9%B4"
+    },
+    {
+      "id": "e60",
+      "role": "link",
+      "text": "劉備",
+      "href": "ja.wikipedia.org/wiki/%E5%8A%89%E5%82%99"
+    },
+    {
+      "id": "e177",
+      "role": "link",
+      "text": "ブルガリア",
+      "href": "ja.wikipedia.org/wiki/%E3%83%96%E3%83%AB%E3%82%AC…"
+    },
+    {
+      "id": "e178",
+      "role": "link",
+      "text": "オスマン帝国",
+      "href": "ja.wikipedia.org/wiki/%E3%82%AA%E3%82%B9%E3%83%9E…"
+    },
+    {
+      "id": "e179",
+      "role": "link",
+      "text": "独立を宣言",
+      "href": "ja.wikipedia.org/wiki/%E3%83%96%E3%83%AB%E3%82%AC…"
+    },
+    {
+      "id": "e61",
+      "role": "link",
+      "text": "高橋 由一",
+      "href": "ja.wikipedia.org/wiki/%E9%AB%98%E6%A9%8B%E7%94%B1…"
+    },
+    {
+      "id": "e62",
+      "role": "link",
+      "text": "江戸",
+      "href": "ja.wikipedia.org/wiki/%E6%B1%9F%E6%88%B8"
+    },
+    {
+      "id": "e63",
+      "role": "link",
+      "text": "日本",
+      "href": "ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC"
+    },
+    {
+      "id": "e64",
+      "role": "link",
+      "text": "洋画家",
+      "href": "ja.wikipedia.org/wiki/%E6%B4%8B%E7%94%BB%E5%AE%B6"
+    },
+    {
+      "id": "e65",
+      "role": "link",
+      "text": "狩野派",
+      "href": "ja.wikipedia.org/wiki/%E7%8B%A9%E9%87%8E%E6%B4%BE"
+    },
+    {
+      "id": "e181",
+      "role": "link",
+      "text": "1908年",
+      "href": "ja.wikipedia.org/wiki/1908%E5%B9%B4"
+    },
+    {
+      "id": "e180",
+      "role": "link",
+      "text": "英語版",
+      "href": "en.wikipedia.org/wiki/Bulgarian%20Declaration%20o…"
+    },
+    {
+      "id": "e68",
+      "role": "link",
+      "text": "アントニオ・フォンタネージ",
+      "href": "ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88…",
+      "below_fold": true
+    },
+    {
+      "id": "e66",
+      "role": "link",
+      "text": "川上冬崖",
+      "href": "ja.wikipedia.org/wiki/%E5%B7%9D%E4%B8%8A%E5%86%AC…",
+      "below_fold": true
+    },
+    {
+      "id": "e67",
+      "role": "link",
+      "text": "チャールズ・ワーグマン",
+      "href": "ja.wikipedia.org/wiki/%E3%83%81%E3%83%A3%E3%83%BC…",
+      "below_fold": true
+    },
+    {
+      "id": "e182",
+      "role": "link",
+      "text": "冷戦",
+      "href": "ja.wikipedia.org/wiki/%E5%86%B7%E6%88%A6",
+      "below_fold": true
+    },
+    {
+      "id": "e183",
+      "role": "link",
+      "text": "西ドイツ",
+      "href": "ja.wikipedia.org/wiki/%E8%A5%BF%E3%83%89%E3%82%A4…",
+      "below_fold": true
+    },
+    {
+      "id": "e184",
+      "role": "link",
+      "text": "コンラート・アデナウアー",
+      "href": "ja.wikipedia.org/wiki/%E3%82%B3%E3%83%B3%E3%83%A9…",
+      "below_fold": true
+    },
+    {
+      "id": "e69",
+      "role": "link",
+      "text": "淡島椿岳",
+      "href": "ja.wikipedia.org/wiki/%E6%B7%A1%E5%B3%B6%E6%A4%BF…",
+      "below_fold": true
+    },
+    {
+      "id": "e185",
+      "role": "link",
+      "text": "ハルシュタイン原則",
+      "href": "ja.wikipedia.org/wiki/%E3%83%8F%E3%83%AB%E3%82%B7…",
+      "below_fold": true
+    },
+    {
+      "id": "e70",
+      "role": "link",
+      "text": "川端玉章",
+      "href": "ja.wikipedia.org/wiki/%E5%B7%9D%E7%AB%AF%E7%8E%89…",
+      "below_fold": true
+    },
+    {
+      "id": "e186",
+      "role": "link",
+      "text": "1955年",
+      "href": "ja.wikipedia.org/wiki/1955%E5%B9%B4",
+      "below_fold": true
+    },
+    {
+      "id": "e187",
+      "role": "link",
+      "text": "イラン・イラク戦争",
+      "href": "ja.wikipedia.org/wiki/%E3%82%A4%E3%83%A9%E3%83%B3…",
+      "below_fold": true
+    },
+    {
+      "id": "e188",
+      "role": "link",
+      "text": "イラク空軍",
+      "href": "ja.wikipedia.org/wiki/%E3%82%A4%E3%83%A9%E3%82%AF…",
+      "below_fold": true
+    },
+    {
+      "id": "e189",
+      "role": "link",
+      "text": "MiG-21",
+      "href": "ja.wikipedia.org/wiki/MiG-21_(%E8%88%AA%E7%A9%BA%…",
+      "below_fold": true
+    },
+    {
+      "id": "e71",
+      "role": "link",
+      "text": "良質な記事",
+      "href": "ja.wikipedia.org/wiki/Wikipedia:%E8%89%AF%E8%B3%A…",
+      "below_fold": true
+    },
+    {
+      "id": "e72",
+      "role": "link",
+      "text": "おまかせ表示",
+      "href": "ja.wikipedia.org/wiki/%E7%89%B9%E5%88%A5:%E3%82%A…",
+      "below_fold": true
+    }
+  ],
+  "rawCount": 313
+}

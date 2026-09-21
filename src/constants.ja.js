@@ -90,16 +90,16 @@ export function localizeJa(base) {
       instructions: {
         question: Q.complete.instructions.question,
         focus:
-          "`transcript` is spoken Japanese arriving piece by piece. Japanese is verb-final: the object comes first and the command verb comes LAST. A command is complete when it ends with a command verb (〜して, 〜て, 〜する, 〜押して, 〜開いて) or with an action noun used as a command (検索, クリック, 入力, スクロール, リロード). It is NOT complete while it ends in a particle (を, に, で, と, の, へ, から) or is only an object with no action.",
+          "`transcript` is spoken Japanese arriving piece by piece. Japanese is verb-final: the object comes first and the command verb comes LAST. A command is complete when it ends with a command verb (〜して, 〜て, 〜する, 〜押して, 〜開いて, 〜に行って, 〜に移動) or with an action noun used as a command (検索, クリック, 入力, スクロール, リロード). It is NOT complete while it ends in a particle (を, に, で, と, の, へ, から), and a bare noun or a bare site name with no action word (ユーチューブ, ダックダックゴー, 猫) is NOT complete either: the verb is still coming.",
       },
       criteria: {
         true: {
           what: "Complete, actionable command",
-          examples: ["下にスクロール", "戻って", "ウィキペディアを開いて", "猫を検索して", "最初の結果をクリック", "こんにちはと入力"],
+          examples: ["下にスクロール", "戻って", "ウィキペディアを開いて", "ユーチューブに行って", "猫を検索して", "最初の結果をクリック", "こんにちはと入力"],
         },
         false: {
           what: "Cut off before the verb / action; more words are clearly coming",
-          examples: ["猫を", "ウィキペディアで", "検索ボックスに", "最初の", "アラン・チューリングについて", "こんにちはと"],
+          examples: ["猫を", "ウィキペディアで", "ユーチューブ", "ダックダックゴー", "グーグルで富士山", "検索ボックスに", "最初の", "アラン・チューリングについて", "こんにちはと"],
         },
       },
     },

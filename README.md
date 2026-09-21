@@ -76,6 +76,42 @@ No microphone? Type a command into the text box on the control page and press En
 
 Two commands in one breath work too: "go to example dot com and click the more information link".
 
+## 日本語で使う / Japanese (`--lang ja`)
+
+```bash
+node --env-file=.env src/server.js --lang ja     # or: VB_LANG=ja ./run.sh
+```
+
+(`node --env-file` is also the way to start it on Windows, where `run.sh` is not available.)
+The control page then listens with `ja-JP`, and the toasts on the controlled page are Japanese.
+
+| こう言うと | こうなる |
+| --- | --- |
+| 「ウィキペディアを開いて」「ヤフーに行って」「example ドット コム を開いて」 | 移動（日本語版サイト: ja.wikipedia.org / amazon.co.jp / google.co.jp / yahoo.co.jp） |
+| 「猫を検索して」「アラン・チューリングについて調べて」 | ページの検索ボックス、なければ DuckDuckGo で検索。検索語は `猫` だけが入る |
+| 「ユーチューブでローファイを検索して」 | サイト指定の検索 |
+| 「ログインをクリック」「2番目のリンクを開いて」 | 要素をクリック。曖昧なら番号バッジが出るので「2番目」「二つ目」「最初」 |
+| 「検索ボックスにこんにちはと入力して」 | そのまま入力 |
+| 「少し下にスクロール」「一番下まで」「前のページに戻って」「新しいタブを開いて」 | スクロール・履歴・タブ |
+| 「注文を確定するをクリック」 | 破壊的操作 → 「確定」または「キャンセル」と言う |
+| 「今日のお昼どうしようかな」 | 無視 |
+
+How it differs from English (all selected once in `src/lang.js`, export names unchanged):
+
+- **Questions** (`src/constants.ja.js`): the English rubric is kept — on `jev-1.13.0` it already
+  classifies Japanese correctly — plus Japanese examples for every option. Only `complete` is
+  rewritten: Japanese is verb-final, so "ends in a particle, or is a bare noun / site name" means
+  *wait*, and "ends in a command verb" means *act*.
+- **Candidate spans** (`src/spans.ja.js`): the payload comes *before* the verb and there are no
+  spaces, so English "text after the verb" cannot work. Particle / verb-ending rules
+  (「〜を検索して」「〜と入力して」「〜に…と入力」) run first, then `Intl.Segmenter` word boundaries as
+  a fallback. Jev still only *picks* a span; nothing is generated.
+- Japanese number picks (「2番目」「二つ目」「に」), spoken URLs (「ドット コム」), search boxes labelled
+  「検索」, and `.co.jp` site detection.
+
+Measured: 24/24 Japanese integration cases (`VB_LANG=ja npm run test:integration`, avg ~300 ms),
+27/27 English cases unchanged, `npm run demo:ci -- --lang ja` 10 steps against real sites.
+
 ## How a decision is made
 
 Every transcript update produces exactly one Jev request (`src/jev.js`). State:
