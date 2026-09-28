@@ -1,5 +1,7 @@
 # voice-browser — talk to a real browser, it acts before you finish the sentence
 
+**日本語の説明: [README.ja.md](README.ja.md)**（日本語モード `--lang ja` の使い方）
+
 A Node app that controls a **headed Chromium window** (Playwright) by voice. Speech is streamed
 word by word from the browser's Web Speech API to a small Node server; on every partial transcript
 the server asks **Jev** (TypeSafe's System One model, `jev-1.13.0`) one request with a dozen typed
