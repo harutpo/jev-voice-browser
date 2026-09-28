@@ -78,7 +78,14 @@ Two commands in one breath work too: "go to example dot com and click the more i
 
 ## 日本語で使う / Japanese (`--lang ja`)
 
+The Japanese mode lives on the `feature/japanese` branch of this fork:
+
 ```bash
+git clone -b feature/japanese https://github.com/harutpo/jev-voice-browser.git
+cd jev-voice-browser
+npm install
+npx playwright install chromium
+cp .env.example .env          # paste your TypeSafe API key
 node --env-file=.env src/server.js --lang ja     # or: VB_LANG=ja ./run.sh
 ```
 
